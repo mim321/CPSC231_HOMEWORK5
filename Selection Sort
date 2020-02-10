@@ -1,0 +1,67 @@
+ package aczept.examples.algorithm;
+
+ public class InsertionSort {
+   public static void main(String[] args) {
+     int[] a = {4, 1, 3, 5, 2};
+     
+     // i เริ่มที่ 1 เพราะตัวที่ 0 ถือว่าได้มาอยู่ในมือโดยไม่ต้องจัดเรียงใดๆ
+     for(int i = 1; i < a.length; i++) {
+       int tmp = a[i];
+       int j = i - 1;
+       
+       // สแกนจากตัวที่ i - 1 ไปถึงตัวแรกสุด
+       for(; j >= 0 && a[j] > tmp; j--) {
+         a[j + 1] = a[j];
+       }
+       
+       // เมื่อหยุดสแกนช่องที่ j + 1 คือจุดที่จะวางค่าลงไป
+       a[j + 1] = tmp;
+     }
+     
+     // พิมพ์ค่าออกมาดู
+     print(a);
+   }
+   
+   public static void print(int[] a) {
+     for(int i = 0; i < a.length; i++)
+       System.out.print(a[i] + " ");
+   }
+ }
+
+
+
+ package aczept.examples.algorithm;
+
+ public class InsertionSortGeneric {
+   public static void main(String[] args) {
+     Integer[] a = {4, 1, 3, 5, 2};
+     sort(a);   
+     print(a);
+     
+     System.out.println();
+     String[] b = {"Zeebra", "Cat", "Ant", "Dog"};
+     sort(b);
+     print(b);
+   }
+   
+   public static <T extends Comparable<? super T>> void sort(T[] a) {
+     // i เริ่มที่ 1 เพราะตัวที่ 0 ถือว่าได้มาอยู่ในมือโดยไม่ต้องจัดเรียงใดๆ
+     for(int i = 1; i < a.length; i++) {
+       T tmp = a[i];
+       int j = i - 1;
+       
+       // สแกนจากตัวที่ i - 1 ไปถึงตัวแรกสุด
+       for(; j >= 0 && a[j].compareTo(tmp) > 0; j--) {
+         a[j + 1] = a[j];
+       }
+       
+       // เมื่อหยุดสแกนช่องที่ j + 1 คือจุดที่จะวางค่าลงไป
+       a[j + 1] = tmp;
+     }   
+   }
+   
+   public static <T extends Comparable<? super T>>void print(T[] a) {
+     for(int i = 0; i < a.length; i++)
+       System.out.print(a[i] + " ");
+   }
+ }
